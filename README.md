@@ -1,109 +1,162 @@
-# Turborepo starter
+Here’s a standard README template for your GitHub repository:
 
-This is an official starter Turborepo.
+---
 
-## Using this example
+# Turborepo E-commerce Monorepo
 
-Run the following command:
+This repository is a Turborepo monorepo setup for an e-commerce platform, featuring a modular setup with various apps and packages. This structure includes services like an inventory manager, store, and dashboard, built with TypeScript and Next.js.
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed:
+- Node.js (v16+)
+- pnpm (v6+ recommended)
+
+### Installation
+
+Clone the repository and navigate into the project directory:
 
 ```sh
-npx create-turbo@latest
+git clone https://github.com/JarmaineNeil/ecommerce-monorepo.git
+cd ecommerce-monorepo
 ```
 
-## What's inside?
+Install dependencies:
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```sh
+pnpm install
 ```
 
-### Develop
+### Run the Project
 
-To develop all apps and packages, run the following command:
+To start the development server for all apps and services:
 
-```
-cd my-turborepo
+```sh
 pnpm dev
 ```
 
-### add services
+This command runs the project in development mode across all workspaces.
 
-Create inventory folder for services and add it to core package.json.
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "services/*"
-  ],
+## Project Structure
 
-It's available for turbo.json
+The monorepo contains the following applications and packages:
+
+### Apps and Packages
+
+- **`docs`**: A [Next.js](https://nextjs.org/) app for documentation.
+- **`web`**: Another [Next.js](https://nextjs.org/) app for the customer-facing website.
+- **`@repo/ui`**: A shared React component library.
+- **`@repo/eslint-config`**: ESLint configuration package.
+- **`@repo/typescript-config`**: Shared TypeScript configurations.
+
+### Services
+
+- **`inventory`**: Manages product inventory, with APIs for CRUD operations.
+- **`store`**: Customer-facing e-commerce storefront.
+- **`dashboard`**: Admin dashboard for managing store data.
+
+## Configuration
+
+### Workspace Configuration
+
+The workspace configuration in `package.json`:
+
+```json
+"workspaces": [
+  "apps/*",
+  "packages/*",
+  "services/*"
+]
+```
+
+And `turbo.json` includes custom task settings:
+
+```json
 {
   "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
   "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    }
+    "build": { "dependsOn": ["^build"], "inputs": ["$TURBO_DEFAULT$", ".env*"], "outputs": [".next/**", "!.next/cache/**"] },
+    "lint": { "dependsOn": ["^lint"] },
+    "dev": { "cache": false, "persistent": true }
   }
 }
+```
 
-#### Config each package.josn
---inventory
+### Scripts
+
+Each package and service has custom scripts to start, build, or test:
+
+- **Inventory Service**:
+  ```json
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "seed": "ts-node src/seed.ts"
-  },
+  }
+  ```
 
---store
+- **Store App**:
+  ```json
   "scripts": {
     "dev": "next dev --turbo --port 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
-  },
+  }
+  ```
 
---dashboard
+- **Dashboard App**:
+  ```json
   "scripts": {
     "dev": "next dev --turbo --port 3002",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
-  },
+  }
+  ```
 
-### How to run this project?
-npm run dev
+## Build
 
+To build all applications and packages, run:
+
+```sh
+pnpm build
+```
+
+## Development
+
+To start development for all packages:
+
+```sh
+pnpm dev
+```
+
+## Utilities
+
+This monorepo comes pre-configured with:
+
+- **TypeScript** for static type checking
+- **ESLint** for linting
+- **Prettier** for formatting
+
+## Contributing
+
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/my-feature`).
+3. Commit your changes (`git commit -m 'Add feature'`).
+4. Push to the branch (`git push origin feature/my-feature`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or feedback, please contact me at [jarmaineneilmojica@gmail.com](mailto:jarmaineneilmojica@gmail.com).
+
+---
+
+This template provides a clear project overview, instructions for setup, and details on each component and how to contribute.
