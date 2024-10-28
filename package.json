@@ -1,0 +1,32 @@
+{
+  "name": "ecommerce-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@types/typescript": "^0.4.29",
+    "prettier": "^3.2.5",
+    "turbo": "^2.2.3",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10.9.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.35.3",
+    "express": "^4.21.1",
+    "pg": "^8.13.1",
+    "uuid": "^10.0.0"
+  }
+}
